@@ -1,16 +1,16 @@
 <!-- 重点参数：renderOptions -->
 <!doctype html>
-<html lang="zh-CN">
+<html>
 
 <head>
     <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/index.html -->
-    <base href="http://webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/" />
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>Demo for multi-modes going out</title>
+    <title>轨迹展示&巡航</title>
     <style>
     html,
     body,
+	div,
     #container {
         width: 100%;
         height: 100%;
@@ -31,12 +31,8 @@
 </head>
 
 <body>
-
-
-    <div id="container"></div>
-		
-		
-
+	<div>
+		<div id="container"></div></div>
     <script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.1&key=44b10c4e6e01c3739927e3e6441785a3'></script>
     <!-- UI组件库 1.0 -->
     <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
@@ -139,7 +135,7 @@
             }
 
             function onerror(e) {
-                alert('图片加载失败！');
+                
             }
 
             //创建一个巡航器
@@ -207,8 +203,6 @@
         });
     });
     </script>
-	
-	
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,6 +29,7 @@
     <style>
     html,
     body,
+	div,
     #container {
         width: 100%;
         height: 100%;
@@ -117,7 +118,8 @@
 		function main() {
 			var output = document.getElementById("output-text");
 			output.value = "asdfasdf" + "\n";
-			output.value += "asdfasdfasdf" + "<br>";
+            output.value += "asdfasdfasdf" + "<br>";
+            start();
 		}
 	</script>
 	
@@ -126,6 +128,7 @@
     <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
     <script type="text/javascript">
     //创建地图
+    function start(){
     var map = new AMap.Map('container', {
         zoom: 4
     });
@@ -290,6 +293,7 @@
             navg3.start();
         });
     });
+}
     </script>
 	  
 	<!-- End all scripts -->
