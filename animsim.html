@@ -1,125 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
+<head>
+<!--weather-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Demo for multi-modes going out</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-
-	      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-	  
-    <!-- Custom styles for this template -->
-    <link href="bootstrap/media/theme.css" rel="stylesheet">
-
-	<!-- Start on import lib -->
-
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <style>
-        html,
-        body,
-        div,
-        #container {
-            width: 100%;
-            height: 100%;
-            margin: 0px;
+    <title>天气预报查询</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <style type="text/css">
+        #weather {
+            height: 180px;
+            background-color: #fff;
+            padding-left: 10px;
+            padding-right: 10px;
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            right: 10px;
+            border-radius: 3px;
+            line-height: 20px;
+            border: 1px solid #ccc;
+        }
+        .weather{
+            width: 60px;
+            padding-left: 8px;
+            display: inline-block;
         }
     </style>
-	  
-	<!-- End on importing -->
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.1&key=44b10c4e6e01c3739927e3e6441785a3"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+<!--/weather-->
 
-	
+<!--animsim-->
+<!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/simple-demo.html -->
+<!--<base href="http://webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/" />-->
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<!--<title>简单路径</title>-->
+<style>
+html,
+body,
+#container {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+</style>
+<!--/animsim-->
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
-  </head>
+</head>
+<body>
+<!--getweather-->
+<div id="container"></div>
+<div id="tip" style="line-height: 24px"></div>
+<script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.1&key=44b10c4e6e01c3739927e3e6441785a3'></script>
+ <!-- UI组件库 1.0 -->
+<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 
-
-  <body>	  
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Bootstrap theme</a>
-        </div>
-          
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <div class="container theme-showcase" role="main">
-
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron" style="height:auto;">
-        <h1>How it comes</h1>
-        <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
-      </div>
-
-		<div class="page-header" style="height:auto;">
-			<h1>Demo</h1>
-		</div>
-		<div class="well">
-            <button onclick="main();" class="btn btn-lg btn-success">Show!</button>
-			<div id="wrapper" style="width:auto; display:table;">
-				<div id="imageDiv" style="width:700; display:table-cell;">
-					<h3>For user</h3>
-					<br><br>
-					<div id="container" style="width:100%; height:70%;"></div>
-				</div>
-				<div id="jsonOutput" style="width:auto; display:table-cell;">
-					<h3>What we obtain</h3>
-					<br><br>
-					<textarea id="output-text" class="UIInput" style="width:400px;" rows="20"></textarea>
-				</div>
-			</div>
-		</div>
-    </div> <!-- /container -->
-	  
-	<!-- functions -->
-	
-	<script type="text/javascript">
-		var mapBaseUrl = "http://webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/";
-		function main() {
-			var output = document.getElementById("output-text");
-			output.value = "asdfasdf" + "\n";
-            output.value += "asdfasdfasdf" + "\n";
-            output.value += "asdfasdfasdf" + "\n";
-            start();
-		}
-	</script>
-	
-	<script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.1&key=44b10c4e6e01c3739927e3e6441785a3'></script>
-    <!-- UI组件库 1.0 -->
-    <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
-    <script type="text/javascript">
-    //创建地图
-    function start(){
-
-        var map = new AMap.Map('container', {
+<script type="text/javascript">
+    var map = new AMap.Map('container', {
         resizeEnable: true,
 		    center: [116.4,39.9],
         zoom: 4
@@ -263,20 +203,10 @@
         });
 
     });
+</script>
 
-    }
-    </script>
-	  
-	<!-- End all scripts -->
-	
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/docs.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+<!--/animsim-->
+
+
+</body>
 </html>

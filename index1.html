@@ -105,7 +105,7 @@
 				<div id="jsonOutput" style="width:auto; display:table-cell;">
 					<h3>What we obtain</h3>
 					<br><br>
-					<textarea id="output-text" class="UIInput" style="width:400px; height:60%;"></textarea>
+					<textarea id="output-text" class="UIInput" style="width:400px;" rows="20"></textarea>
 				</div>
 			</div>
 		</div>
@@ -118,7 +118,8 @@
 		function main() {
 			var output = document.getElementById("output-text");
 			output.value = "asdfasdf" + "\n";
-            output.value += "asdfasdfasdf" + "<br>";
+            output.value += "asdfasdfasdf" + "\n";
+            output.value += "asdfasdfasdf" + "\n";
             start();
 		}
 	</script>
