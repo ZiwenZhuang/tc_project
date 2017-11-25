@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Demo for multi-mode going out</title>
+    <title>Demo for multi-modes going out</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,18 +22,22 @@
     <!-- Custom styles for this template -->
     <link href="bootstrap/media/theme.css" rel="stylesheet">
 
-	<!-- Add the lib from the map demo -->
-
-
-
-	<!-- End the lib from the map demo -->
+	<!-- Start on import lib -->
+	 
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script> 
+    <script> 
+      $("#includedContent").load("anim.html"); 
+    </script> 
 	  
+	<!-- End on importing -->
+
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
   </head>
+
 
   <body>	  
     <!-- Fixed navbar -->
@@ -76,11 +80,7 @@
 				<div id="imageDiv" style="width:420px; display:table-cell;">
 					<h3>For user</h3>
 					<br><br>
-					<iframe style="width: auto; height: inherit;">
-					
-					
-						
-					</iframe>
+					<div id="includedContent"></div>
 				</div>
 				<div id="jsonOutput" style="width:600px; display:table-cell;">
 					<h3>What we obtain</h3>
