@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Demo for multi-modes going out</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
+	      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+	  
+    <!-- Custom styles for this template -->
+    <link href="bootstrap/media/theme.css" rel="stylesheet">
+
+	<!-- Start on import lib -->
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <style>
+        html,
+        body,
+        div {
+            width: 100%;
+            height: 50px;
+        }
+        #container {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+    </style>
+	  
+	<!-- End on importing -->
+
+	
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+  </head>
+
+
+  <body>	  
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container" style="width: auto; height: auto;">
+        <div class="navbar-header" style="width: auto; height: auto;">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Bootstrap theme</a>
+        </div>
+          
+        <div id="navbar" class="navbar-collapse collapse" style="width: auto; height: auto;">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main" style="width: auto; height: auto;">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron" style="height:auto;">
+        <h1>How it comes</h1>
+        <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+      </div>
+
+		<div class="page-header" style="height:auto;">
+			<h1>Demo</h1>
+		</div>
+		<div class="well" style="width: auto; height: auto;">
+            <button onclick="main();" class="btn btn-lg btn-success">Show!</button>
+			<div id="wrapper" style="width:auto; display:table;">
+				<div id="imageDiv" style="width:700; display:table-cell;">
+					<h3>For user</h3>
+					<br><br>
+					<div id="container" style="width:100%; height:75%;"></div>
+				</div>
+				<div id="jsonOutput" style="width:auto; display:table-cell;">
+					<h3>What we obtain</h3>
+					<br><br>
+					<textarea id="output-text" class="UIInput" style="width:400px;" rows="20"></textarea>
+				</div>
+			</div>
+		</div>
+    </div> <!-- /container -->
+	  
+	<!-- functions -->
+	
+	<script type="text/javascript">
+		var mapBaseUrl = "http://webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/";
+		function main() {
+			var output = document.getElementById("output-text");
+			output.value = "asdfasdf" + "\n";
+            output.value += "asdfasdfasdf" + "\n";
+            output.value += "asdfasdfasdf" + "\n";
+            start();
+		}
+	</script>
+	
+	<script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.1&key=44b10c4e6e01c3739927e3e6441785a3'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    <script type="text/javascript">
+    //创建地图
+    function start(){
+        var map = new AMap.Map('container', {
+        resizeEnable: true,
+		    center: [116.4,39.9],
+        zoom: 4
+    });
+    var navg;
+    AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
+
+        if (!PathSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
+
+        var pathSimplifierIns = new PathSimplifier({
+            zIndex: 100,
+            //autoSetFitView:false,
+            map: map, //所属的地图实例
+
+            getPath: function(pathData, pathIndex) {
+
+                return pathData.path;
+            },
+            getHoverTitle: function(pathData, pathIndex, pointIndex) {
+
+                if (pointIndex >= 0) {
+                    //point
+                    return pathData.name + '，点：' + pointIndex + '/' + pathData.path.length;
+                }
+
+                return pathData.name + '，点数量' + pathData.path.length;
+            },
+            renderOptions: {
+
+                renderAllPointsIfNumberBelow: 100 //绘制路线节点，如不需要可设置为-1
+            }
+        });
+
+        window.pathSimplifierIns = pathSimplifierIns;
+
+        //设置数据
+        pathSimplifierIns.setData([{
+            name: '路线0',
+            path: [
+                [116.415, 39.87],
+                [116.4214, 39.87],
+                [116.4207, 39.8848],
+                [116.4191, 39.888],
+                [116.4189, 39.8932],
+                [116.4278, 39.8936],
+                [116.4277, 39.8948],
+                [116.431, 39.895],
+                [116.4307, 39.89755],
+                [116.43, 39.89755],
+                [116.43, 39.90],
+            ]
+        }]);
+
+        //对第一条线路（即索引 0）创建一个巡航器
+        var navg = pathSimplifierIns.createPathNavigator(0, {
+            loop: true, //循环播放
+            speed: 300 //巡航速度，单位千米/小时
+        });
+        navg.start();
+
+
+        console.log(navg.isCursorAtPathEnd());
+
+        var p = new Parallel(navg);
+
+    });
+
+
+    }
+    </script>
+	  
+	<!-- End all scripts -->
+	
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
