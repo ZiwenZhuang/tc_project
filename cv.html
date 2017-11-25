@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<script type="text/javascript">
+<script type="text/javascript" id="analyze_image">
     function processImage() {
         // **********************************************
         // *** Update or verify the following values. ***
@@ -57,6 +57,20 @@
         });
     };
 </script>
+	
+<script type="text/javascript">
+	// Not showing vendor prefixes or code that works cross-browser:
+
+	function fallback(e) {
+	  video.src = 'fallbackvideo.webm';
+		alert("failed");
+	}
+
+	function success(stream) {
+	  var sourceImageUrl = window.URL.createObjectURL(stream);
+		alert(sourceImageUrl);
+	}
+</script>
 
 <h1>Analyze image:</h1>
 Enter the URL to an image of a natural or artificial landmark, then click the <strong>Analyze image</strong> button.
@@ -76,5 +90,13 @@ Image to analyze: <input type="text" name="inputImage" id="inputImage" value="ht
         <img id="sourceImage" width="400" />
     </div>
 </div>
+<div>
+	<button onclick="
+					 if (!navigator.getUserMedia) {
+		  fallback();
+		} else {
+		  navigator.getUserMedia({video: true}, success, fallback);
+		}">getimage</button>
+	</div>
 </body>
 </html>

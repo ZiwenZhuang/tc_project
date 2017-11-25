@@ -73,6 +73,19 @@
 			<button onclick="loadDoc()" type="button" class="btn btn-lg btn-default">test on JS</button>
 			<button href="cv.html" type="button" class="btn btn-lg btn-default">test on CV</button>
 		</div>
+		
+		<div>
+			<input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput">
+		</div>
+		<script>
+			$('#cameraInput').on('change', function(e){
+			 $data = e.originalEvent.target.files[0];
+			  $reader = new FileReader();
+			  reader.onload = function(evt){
+			  $('#your_img_id').attr('src',evt.target.result);
+			  reader.readAsDataUrl($data);
+			}});
+		</script>
     </div> <!-- /container -->
 
 
