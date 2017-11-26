@@ -18,7 +18,7 @@
 
 	      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
+	  
     <!-- Custom styles for this template -->
     <link href="bootstrap/media/theme.css" rel="stylesheet">
 
@@ -38,23 +38,19 @@
             margin: 0px;
         }
     </style>
-
+	  
 	<!-- End on importing -->
 
-
+	
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-  <audio id='a1' src="折点1.mp3"></audio>
-  <audio id='a2' src="折点2.mp3"></audio>
-  <audio id='a3' src="折点3.mp3"></audio>
-  <audio id='a4' src="折点4.mp3"></audio>
 
   </head>
 
 
-  <body>
+  <body>	  
     <!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container" style="width: auto; height: auto;">
@@ -67,7 +63,7 @@
           </button>
           <a class="navbar-brand" href="#">ComMusic</a>
         </div>
-
+          
         <div id="navbar" class="navbar-collapse collapse" style="width: auto; height: auto;">
           <ul class="nav navbar-nav">
             <li><a href="#page-header">Logo</a></li>
@@ -81,14 +77,14 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron" style="height:auto;">
-        <img src="Logo.png" style="display:block; margin:10px auto;">
+        <img src="Logo.png">
       </div>
 
 		<div class="page-header" style="height:auto;">
-			<center><h1 style="display:block; margin:10px auto;">Demo</h1></center>
+			<h1>Demo</h1>
 		</div>
 		<div class="well" style="width: auto; height: auto;">
-            <center><button onclick="main();" class="btn btn-lg btn-success">Show!</button></center>
+            <button onclick="main();" class="btn btn-lg btn-success">Show!</button>
 			<div id="wrapper" style="width:auto; display:table;">
 				<div id="imageDiv" style="width:700; display:table-cell;">
 					<div id="container" style="width:100%; height:100%;"></div>
@@ -99,28 +95,27 @@
 			</div>
 		</div>
     </div> <!-- /container -->
-
+	  
 	<!-- functions -->
-
+	
 	<script type="text/javascript">
 		var mapBaseUrl = "http://webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/";
-     audio1=document.getElementById("a1");
-     audio2=document.getElementById("a2");
-     audio3=document.getElementById("a3");
-     audio4=document.getElementById("a4");
 		function main() {
-
+			var output = document.getElementById("output-text");
+			output.value = "asdfasdf" + "\n";
+            output.value += "asdfasdfasdf" + "\n";
+            output.value += "asdfasdfasdf" + "\n";
             start();
 		}
 	</script>
-
+	
 	<script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.1&key=44b10c4e6e01c3739927e3e6441785a3'></script>
     <!-- UI组件库 1.0 -->
     <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
     <script type="text/javascript">
     //创建地图
     function start(){
-
+        
         var map = new AMap.Map('container', {
         resizeEnable: true,
 		    center: [116.4,39.9],
@@ -205,7 +200,6 @@
                                 var marker0 = new AMap.Marker({map: map, position: new AMap.LngLat(116.4214, 39.87), animation:'AMAP_ANIMATION_DROP', visible: false});
                                 // infoWin2.open(map, marker4.getPosition());
                                 infoWin0.open(map, marker0.getPosition());
-                                audio1.play();
                                 break;
                             case 2:
                                 var str = [];
@@ -225,7 +219,6 @@
                                 // infoWin2.open(map, marker4.getPosition());
                                 console.log("xxx")
                                 infoWin1.open(map, marker1.getPosition());
-                                audio2.play();
                                 break;
                             case 4:
                                 var str = [];
@@ -245,7 +238,6 @@
                                 // infoWin2.open(map, marker4.getPosition());
                                 console.log("xxx")
                                 infoWin2.open(map, marker2.getPosition());
-                                audio3.play();
                                 break;
                             case 5:
                                 var str = [];
@@ -265,8 +257,6 @@
                                 // infoWin2.open(map, marker4.getPosition());
                                 console.log("xxx")
                                 infoWin4.open(map, marker4.getPosition());
-                                audio3.pause();
-                                audio4.play();
                                 break;
                         }
                     }
@@ -303,9 +293,9 @@
 
     }
     </script>
-
+	  
 	<!-- End all scripts -->
-
+	
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
