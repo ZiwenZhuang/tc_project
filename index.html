@@ -174,134 +174,122 @@
 
         //对第一条线路（即索引 0）创建一个巡航器
         var navg = pathSimplifierIns.createPathNavigator(0, {
-            loop: true, //循环播放
+            loop: false, //循环播放
             speed: 300 //巡航速度，单位千米/小时
         });
+        navg.on("move", function(){
+                if (!navg.isCursorAtPathEnd()) {
+                    var result = isRalm([navg.getPosition().getLng(),navg.getPosition().getLat()]);
+                    console.log("result" + result);
+                    if (result) {
+                        switch (result) {
+                            case 1:
+                                var str = [];
+                                str.push('<div style="color: #3366FF;">天气有点冷哦，给您放首摇滚热热身吧！' + '</div>');
+                                // str.push('<div>城市/区：' + data.city + '</div>');
+                                // str.push('<div>天气：' + data.weather + '</div>');
+                                // str.push('<div>温度：' + data.temperature + '℃</div>');
+                                // str.push('<div>风向：' + data.windDirection + '</div>');
+                                // str.push('<div>风力：' + data.windPower + ' 级</div>');
+                                // str.push('<div>空气湿度：' + data.humidity + '</div>');
+                                // str.push('<div>发布时间：' + data.reportTime + '</div>');
+                                var infoWin0 = new AMap.InfoWindow({
+                                    content: str.join(''),
+                                    offset: new AMap.Pixel(0, -70)
+                                });
+                                var marker0 = new AMap.Marker({map: map, position: new AMap.LngLat(116.4214, 39.87), animation:'AMAP_ANIMATION_DROP', visible: false});
+                                // infoWin2.open(map, marker4.getPosition());
+                                infoWin0.open(map, marker0.getPosition());
+                                break;
+                            case 2:
+                                var str = [];
+                                str.push('<div style="color: #3366FF;">旁边有个公园感受下自然的气息吧！' + '</div>');
+                                // str.push('<div>城市/区：' + data.city + '</div>');
+                                // str.push('<div>天气：' + data.weather + '</div>');
+                                // str.push('<div>温度：' + data.temperature + '℃</div>');
+                                // str.push('<div>风向：' + data.windDirection + '</div>');
+                                // str.push('<div>风力：' + data.windPower + ' 级</div>');
+                                // str.push('<div>空气湿度：' + data.humidity + '</div>');
+                                // str.push('<div>发布时间：' + data.reportTime + '</div>');
+                                var infoWin1 = new AMap.InfoWindow({
+                                    content: str.join(''),
+                                    offset: new AMap.Pixel(0, -70)
+                                });
+                                var marker1 = new AMap.Marker({map: map, position: new AMap.LngLat(116.4207, 39.8848), animation:'AMAP_ANIMATION_DROP', visible: false});
+                                // infoWin2.open(map, marker4.getPosition());
+                                console.log("xxx")
+                                infoWin1.open(map, marker1.getPosition());
+                                break;
+                            case 4:
+                                var str = [];
+                                str.push('<div style="color: #3366FF;">这是条古老的街道，来首慢摇~' + '</div>');
+                                // str.push('<div>城市/区：' + data.city + '</div>');
+                                // str.push('<div>天气：' + data.weather + '</div>');
+                                // str.push('<div>温度：' + data.temperature + '℃</div>');
+                                // str.push('<div>风向：' + data.windDirection + '</div>');
+                                // str.push('<div>风力：' + data.windPower + ' 级</div>');
+                                // str.push('<div>空气湿度：' + data.humidity + '</div>');
+                                // str.push('<div>发布时间：' + data.reportTime + '</div>');
+                                var infoWin2 = new AMap.InfoWindow({
+                                    content: str.join(''),
+                                    offset: new AMap.Pixel(0, -70)
+                                });
+                                var marker2 = new AMap.Marker({map: map, position: new AMap.LngLat(116.4189, 39.8932), animation:'AMAP_ANIMATION_DROP', visible: false});
+                                // infoWin2.open(map, marker4.getPosition());
+                                console.log("xxx")
+                                infoWin2.open(map, marker2.getPosition());
+                                break;
+                            case 5:
+                                var str = [];
+                                str.push('<div style="color: #3366FF;">您快到了，have a nice day~' + '</div>');
+                                // str.push('<div>城市/区：' + data.city + '</div>');
+                                // str.push('<div>天气：' + data.weather + '</div>');
+                                // str.push('<div>温度：' + data.temperature + '℃</div>');
+                                // str.push('<div>风向：' + data.windDirection + '</div>');
+                                // str.push('<div>风力：' + data.windPower + ' 级</div>');
+                                // str.push('<div>空气湿度：' + data.humidity + '</div>');
+                                // str.push('<div>发布时间：' + data.reportTime + '</div>');
+                                var infoWin4 = new AMap.InfoWindow({
+                                    content: str.join(''),
+                                    offset: new AMap.Pixel(0, -70)
+                                });
+                                var marker4 = new AMap.Marker({map: map, position: new AMap.LngLat(116.4278, 39.8936), animation:'AMAP_ANIMATION_DROP', visible: false});
+                                // infoWin2.open(map, marker4.getPosition());
+                                console.log("xxx")
+                                infoWin4.open(map, marker4.getPosition());
+                                break;
+                        }
+                    }
+                }
+            });
         navg.start();
     });
-    AMap.service('AMap.Weather', function() {
-        var weather = new AMap.Weather();
 
-
-        weather.getLive('朝阳区', function(err, data) {
-            if (!err) {
-                var str = [];
-                str.push('<div style="color: #3366FF;">您快到了，have a nice day！' + '</div>');
-                // str.push('<div>城市/区：' + data.city + '</div>');
-                // str.push('<div>天气：' + data.weather + '</div>');
-                // str.push('<div>温度：' + data.temperature + '℃</div>');
-                // str.push('<div>风向：' + data.windDirection + '</div>');
-                // str.push('<div>风力：' + data.windPower + ' 级</div>');
-                // str.push('<div>空气湿度：' + data.humidity + '</div>');
-                // str.push('<div>发布时间：' + data.reportTime + '</div>');
-                var infoWin57 = new AMap.InfoWindow({
-                    content: str.join(''),
-                    offset: new AMap.Pixel(0, -70)
-                });
-                var marker57 = new AMap.Marker({map: map, position: new AMap.LngLat(116.4294, 39.8943), animation:'AMAP_ANIMATION_DROP'});
-                // infoWin.open(map, marker57.getPosition());
-                marker57.setzIndex(1000)
-                marker57.on('mouseover', function() {
-                    console.log("xxx")
-                    infoWin57.open(map, marker57.getPosition());
-                });
-
-
-
-                var str = [];
-                str.push('<div style="color: #3366FF;">这是个古老的街道，来首慢摇～' + '</div>');
-                // str.push('<div>城市/区：' + data.city + '</div>');
-                // str.push('<div>天气：' + data.weather + '</div>');
-                // str.push('<div>温度：' + data.temperature + '℃</div>');
-                // str.push('<div>风向：' + data.windDirection + '</div>');
-                // str.push('<div>风力：' + data.windPower + ' 级</div>');
-                // str.push('<div>空气湿度：' + data.humidity + '</div>');
-                // str.push('<div>发布时间：' + data.reportTime + '</div>');
-                var infoWin4 = new AMap.InfoWindow({
-                    content: str.join(''),
-                    offset: new AMap.Pixel(0, -70)
-                });
-                var marker4 = new AMap.Marker({map: map, position: new AMap.LngLat(116.4189, 39.8932), animation:'AMAP_ANIMATION_DROP'});
-                // infoWin2.open(map, marker4.getPosition());
-                marker4.on('mouseover', function() {
-                    console.log("xxx")
-                    infoWin4.open(map, marker4.getPosition());
-                });
-
-                var str = [];
-                str.push('<div style="color: #3366FF;">旁边有个公园，要不要去看看？' + '</div>');
-                // str.push('<div>城市/区：' + data.city + '</div>');
-                // str.push('<div>天气：' + data.weather + '</div>');
-                // str.push('<div>温度：' + data.temperature + '℃</div>');
-                // str.push('<div>风向：' + data.windDirection + '</div>');
-                // str.push('<div>风力：' + data.windPower + ' 级</div>');
-                // str.push('<div>空气湿度：' + data.humidity + '</div>');
-                // str.push('<div>发布时间：' + data.reportTime + '</div>');
-                var infoWin2 = new AMap.InfoWindow({
-                    content: str.join(''),
-                    offset: new AMap.Pixel(0, -70)
-                });
-                var marker2 = new AMap.Marker({map: map, position: new AMap.LngLat(116.4207, 39.8848), animation:'AMAP_ANIMATION_DROP'});
-                // infoWin2.open(map, marker4.getPosition());
-                marker2.on('mouseover', function() {
-                    console.log("xxx")
-                    infoWin2.open(map, marker2.getPosition());
-                });
-
-                var str = [];
-                str.push('<div style="color: #3366FF;">天气有点冷哦，给您放首摇滚热热身吧！' + '</div>');
-                // str.push('<div>城市/区：' + data.city + '</div>');
-                // str.push('<div>天气：' + data.weather + '</div>');
-                // str.push('<div>温度：' + data.temperature + '℃</div>');
-                // str.push('<div>风向：' + data.windDirection + '</div>');
-                // str.push('<div>风力：' + data.windPower + ' 级</div>');
-                // str.push('<div>空气湿度：' + data.humidity + '</div>');
-                // str.push('<div>发布时间：' + data.reportTime + '</div>');
-                var infoWin1 = new AMap.InfoWindow({
-                    content: str.join(''),
-                    offset: new AMap.Pixel(0, -70)
-                });
-                var marker1 = new AMap.Marker({map: map, position: new AMap.LngLat(116.4214, 39.87), animation:'AMAP_ANIMATION_DROP'});
-                // infoWin2.open(map, marker4.getPosition());
-                marker1.on('mouseover', function() {
-                    console.log("xxx")
-                    infoWin1.open(map, marker1.getPosition());
-                });
-
-                var str = [];
-                str.push('<div style="color: #3366FF;">您出发了！' + '</div>');
-                // str.push('<div>城市/区：' + data.city + '</div>');
-                // str.push('<div>天气：' + data.weather + '</div>');
-                // str.push('<div>温度：' + data.temperature + '℃</div>');
-                // str.push('<div>风向：' + data.windDirection + '</div>');
-                // str.push('<div>风力：' + data.windPower + ' 级</div>');
-                // str.push('<div>空气湿度：' + data.humidity + '</div>');
-                // str.push('<div>发布时间：' + data.reportTime + '</div>');
-                var infoWin0 = new AMap.InfoWindow({
-                    content: str.join(''),
-                    offset: new AMap.Pixel(0, -70)
-                });
-                var marker0 = new AMap.Marker({map: map, position: new AMap.LngLat(116.415, 39.87), animation:'AMAP_ANIMATION_DROP'});
-                // infoWin2.open(map, marker4.getPosition());
-                marker0.on('mouseover', function() {
-                    console.log("xxx")
-                    infoWin0.open(map, marker0.getPosition());
-                });
+    function isRalm(position) {
+            var path = [
+                    [116.415, 39.87],
+                    [116.4214, 39.87],
+                    [116.4207, 39.8848],
+                    [116.4191, 39.888],
+                    [116.4189, 39.8932],
+                    [116.4278, 39.8936],
+                    [116.4277, 39.8948],
+                    [116.431, 39.895],
+                    [116.4307, 39.89755],
+                    [116.43, 39.89755],
+                    [116.43, 39.90],
+                ]
+            for (i = 0; i < 11; i++) {
+                console.log(path[i][0]);
+                var calculate = Math.pow((position[0] - path[i][0]),2) + Math.pow((position[1] - path[i][1]),2);
+                console.log(calculate);
+                if (calculate < 0.0000008) {
+                    return i;
+                }
             }
-        });
+            return false;
+        }
 
-
-        // //未来4天天气预报
-        // weather.getForecast('朝阳区', function(err, data) {
-        //     if (err) {return;}
-        //     var str = [];
-        //     for (var i = 0,dayWeather; i < data.forecasts.length; i++) {
-        //         dayWeather = data.forecasts[i];
-        //         str.push(dayWeather.date+' <div class="weather">'+dayWeather.dayWeather+'</div> '+ dayWeather.nightTemp + '~' + dayWeather.dayTemp + '℃');
-        //     }
-        //     document.getElementById('tip').innerHTML = str.join('<br>');
-        // });
-    });
 
     }
     </script>
